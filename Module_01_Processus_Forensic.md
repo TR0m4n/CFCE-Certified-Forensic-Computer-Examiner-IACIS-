@@ -26,6 +26,7 @@ L'investigation forensic numérique suit une méthodologie rigoureuse en **5 pha
 ### Objectif
 Déterminer ce qui constitue une preuve potentielle et définir le périmètre de l'investigation.
 
+
 ### Actions clés
 
 | Action | Description |
@@ -415,8 +416,8 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - C) Préservation → Identification → Acquisition → Reporting → Analyse
 - D) Identification → Acquisition → Préservation → Analyse → Reporting
 
-**Ta réponse :** _______
-**Justification :** _______________________________________________
+**Ta réponse :** C
+**Justification :** on analyse ce qu'on a, on verifie que rien ne s'echappe, on recupere les données, on analyse et on en fait un rapport afin que les preuvent soient recevable 
 
 ---
 
@@ -426,8 +427,8 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - C) Débrancher le câble réseau et faire une image du disque
 - D) Appeler ton superviseur pour instructions
 
-**Ta réponse :** _______
-**Justification :** _______________________________________________
+**Ta réponse :** B
+**Justification :** on doit prendre une photo pour explique dans quelle etat on a trouvé la machine puis on capture la ram car une fois eteint elle s'efface
 
 ---
 
@@ -437,8 +438,8 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - C) ISO
 - D) VHD
 
-**Ta réponse :** _______
-**Justification :** _______________________________________________
+**Ta réponse :** B
+**Justification :** c'est le model reconnue pour les juristes
 
 ---
 
@@ -448,8 +449,8 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - C) Documenter l'échec, investiguer la cause, et recommencer l'acquisition
 - D) Ignorer le SHA-256 et vérifier seulement le MD5
 
-**Ta réponse :** _______
-**Justification :** _______________________________________________
+**Ta réponse :** C
+**Justification :** le hash doit absolument etre le meme, si ce n'est pas le cas il faut recommencer et voir ou est l'erreur. Tout ça en documentant
 
 ---
 
@@ -459,8 +460,8 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - C) Fichiers sur clé USB
 - D) Logs dans le cloud
 
-**Ta réponse :** _______
-**Justification :** _______________________________________________
+**Ta réponse :** B
+**Justification :** une fois l'ordinateur eteint tout s'en va
 
 ---
 
@@ -470,8 +471,8 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - C) Câble réseau crossover
 - D) Lecteur de cartes multi-format
 
-**Ta réponse :** _______
-**Justification :** _______________________________________________
+**Ta réponse :** B
+**Justification :** pour eviter tout ecriture sur le disk qui ferait que la preuve est irrecevable
 
 ---
 
@@ -481,8 +482,8 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - C) Seulement le lieu de stockage final
 - D) Les conclusions de l'analyse
 
-**Ta réponse :** _______
-**Justification :** _______________________________________________
+**Ta réponse :** B
+**Justification :** afin de pouvoir avoir les noms des personnes ayant travaillé dessus au cas ou il y'a un problème
 
 ---
 
@@ -492,8 +493,8 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - C) Les deux : espace alloué ET non-alloué
 - D) Uniquement les fichiers système
 
-**Ta réponse :** _______
-**Justification :** _______________________________________________
+**Ta réponse :** C
+**Justification :** Car un fichier contenant le nom a pu etre effacé
 
 ---
 
@@ -503,8 +504,8 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - C) Objectif, reproductible et compréhensible par un non-technicien
 - D) Confidentiel et jamais partagé avec la défense
 
-**Ta réponse :** _______
-**Justification :** _______________________________________________
+**Ta réponse :** C
+**Justification :** Afin que les juges puissent prendre une decision sur ce qui à été trouvé
 
 ---
 
@@ -514,7 +515,7 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - C) Chiffrer les preuves pour le transport
 - D) Compresser les images forensic
 
-**Ta réponse :** _______
+**Ta réponse :** B
 **Justification :** _______________________________________________
 
 ---
@@ -524,13 +525,13 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 ### 2.1 Ordre de volatilité
 Classe ces éléments du PLUS volatile au MOINS volatile (1 = plus volatile) :
 
-- [ ] Disque dur interne
-- [ ] Registres CPU
-- [ ] RAM
-- [ ] Serveur de logs distant
-- [ ] Table de routage réseau
-- [ ] Fichiers temporaires système
-- [ ] Clé USB connectée
+- [ 7] Disque dur interne
+- [2 ] Registres CPU
+- [1 ] RAM
+- [ 5] Serveur de logs distant
+- [ 4] Table de routage réseau
+- [3 ] Fichiers temporaires système
+- [ 6] Clé USB connectée
 
 **Ton classement :**
 ```
@@ -555,12 +556,12 @@ Remets ces étapes dans l'ordre correct :
 
 **Ton ordre :**
 ```
-1. _______________
-2. _______________
-3. _______________
-4. _______________
-5. _______________
-6. _______________
+1. Photographier le média et noter le S/N
+2. Connecter le write-blocker
+3. Créer l'image forensic (E01)
+4. alculer le hash du média source
+5. Vérifier que le hash source = hash image
+6. Documenter dans la Chain of Custody
 ```
 
 ---
@@ -583,7 +584,7 @@ Rédige une entrée complète de Chain of Custody pour cette saisie. Inclus tous
 
 **Ta Chain of Custody :**
 ```
-(Rédige ici)
+je branche le blockwriter sur la machine, je fais une copie bit a bit du disk, je calcul le hash via l'image E01, je verifie que le hash soit correct et je procède a l'analyse
 ```
 
 ---
@@ -604,39 +605,37 @@ Tu arrives sur les lieux d'une perquisition. Dans le bureau suspect, tu trouves 
 
 **Ton ordre de priorité :**
 ```
-1. _______________
-   Justification : _______________
+1. 4
+   Justification : car l'ecran est allumé et il faut absolument recuperer la ram
 
-2. _______________
-   Justification : _______________
+2. 1
+   Justification : l'ecran est allumé il faut pouvoir recuperer la ram
 
-3. _______________
-   Justification : _______________
+3. 2
+   Justification : ce sont les troisième objets avec des elements qui sont les plus volatile
 
-4. _______________
-   Justification : _______________
+4. les disques dur
+   Justification :moins sensible a la volatilité
 
-5. _______________
-   Justification : _______________
+5. les clé usb
+   Justification : moins sensible a la volatilité
 ```
 
 **4.2** Pour le PC allumé, liste les 5 premières actions que tu effectues (dans l'ordre).
 
 **Tes actions :**
 ```
-1. _______________
-2. _______________
-3. _______________
-4. _______________
-5. _______________
+1. je mets un write blocker sur l'ordinateur
+2. je recupere la ram
+3. j'effetue une copie bit a bit du disque
+4. je calcule le hash
+5. je verifie que le hash corresponde
 ```
 
 **4.3** Quels risques spécifiques poses le smartphone avec écran allumé ?
 
 **Ta réponse :**
-```
-(Explique les risques et les mesures à prendre)
-```
+le risque du telephone est que l'ecran peut s'eteindre et donc que la session se ferme
 
 ---
 
@@ -665,20 +664,17 @@ Hash post-acquisition :
 **5.1** Y a-t-il un problème ? Si oui, lequel ?
 
 **Ta réponse :**
-```
-```
+lke problème vient du fait que les hash ne sont pas identique, donc il y'a eut une modification du contenue du disque et donc la preuve n'est pas recevable
 
 **5.2** L'image est-elle utilisable comme preuve judiciaire ? Justifie.
 
 **Ta réponse :**
-```
-```
+Non car les hashs doivent absolument etre identique
 
 **5.3** Quelles actions dois-tu entreprendre ?
 
 **Ta réponse :**
-```
-```
+je dois ecrire que cela n'a pas marché dans le rapport, voir ou a été causé le problème et recalculer le hash 
 
 ---
 
@@ -704,11 +700,14 @@ Tu as terminé l'analyse forensic d'un PC. Voici les faits découverts :
 Rédige un Executive Summary (maximum 200 mots) pour ce rapport. Le résumé doit être compréhensible par un directeur non-technique ou un juge.
 
 **Ton Executive Summary :**
-```
-(Rédige ici)
-```
 
----
+Entre janvier et mars 2024, le poste Dell OptiPlex 7080 de l’employé Marc Durant a été analysé dans le cadre d’une suspicion de vol de fichiers confidentiels.
+L’examen révèle qu’une clé USB identifiée comme USB-X789 a été connectée le 15 février 2024 à 23:42 UTC. Les journaux système (USBSTOR, Shellbags) montrent la copie de 847 fichiers issus du dossier **D:\Projets_Confidentiels**, contenant des schémas techniques et des listes clients.
+Les Jump Lists confirment un accès actif à ce même dossier entre 23:30 et 23:55 UTC, cohérent avec une opération de transfert de données.
+
+Le lendemain, le 16 février à 08:15 UTC, le logiciel CCleaner a été exécuté, ce qui suggère une tentative de supprimer ou masquer des traces d’activité récente.
+
+Les éléments collectés sont cohérents et convergent vers une extraction non autorisée de données sensibles par l’employé à l’aide d’un support USB externe, suivie d’une action visant à effacer des traces.
 
 ## EXERCICE 7 : Vrai ou Faux
 
@@ -716,14 +715,14 @@ Indique si chaque affirmation est vraie ou fausse. Justifie chaque réponse.
 
 | # | Affirmation | V/F | Justification |
 |---|-------------|-----|---------------|
-| 1 | Un write-blocker logiciel est suffisant pour une acquisition judiciaire | | |
-| 2 | Le format dd/raw est plus complet que E01 car il ne compresse rien | | |
-| 3 | Si les hashs MD5 correspondent mais pas les SHA-256, l'image est valide | | |
-| 4 | L'Executive Summary d'un rapport forensic doit contenir du jargon technique | | |
-| 5 | Le file carving peut récupérer des fichiers dont les entrées MFT sont écrasées | | |
-| 6 | La RAM doit être capturée après avoir éteint l'ordinateur | | |
-| 7 | La Chain of Custody s'arrête une fois l'image forensic créée | | |
-| 8 | Un examinateur forensic peut donner son opinion personnelle dans le rapport | | |
+| 1 | Un write-blocker logiciel est suffisant pour une acquisition judiciaire | N | il faut aussi avoir une image format E01|
+| 2 | Le format dd/raw est plus complet que E01 car il ne compresse rien |F | non car elle ne possède par de meta données ni la compression qui reduit de 30% la taille de l'image|
+| 3 | Si les hashs MD5 correspondent mais pas les SHA-256, l'image est valide | F| les deux doivent correspondre |
+| 4 | L'Executive Summary d'un rapport forensic doit contenir du jargon technique | F| car un juge doit pouvoir le lire|
+| 5 | Le file carving peut récupérer des fichiers dont les entrées MFT sont écrasées |V| le carving permet de recuperer des ficheir supprimé|
+| 6 | La RAM doit être capturée après avoir éteint l'ordinateur |F |absolument si l'ordinateur est allumé car sinon la mémoire RAM se vide |
+| 7 | La Chain of Custody s'arrête une fois l'image forensic créée | F| elle doit contenir toute la suite du deroulement de l'analyse|
+| 8 | Un examinateur forensic peut donner son opinion personnelle dans le rapport | F| il doit être objectif pour ne pas influencer le jury|
 
 ---
 
@@ -735,22 +734,20 @@ Réponds à ces questions avec des réponses développées (5-10 phrases chacune
 Explique pourquoi la préservation de la preuve est considérée comme la phase la plus critique du processus forensic.
 
 **Ta réponse :**
-```
-```
+car si la preuve n'est pas recevable, elle ne pourra pas être utilisé comme piece a conviction
+
 
 ### 8.2
 Un avocat de la défense conteste ton rapport car tu n'as pas utilisé de write-blocker matériel (seulement logiciel). Comment te défends-tu ? Ou reconnais-tu l'erreur ?
 
 **Ta réponse :**
-```
-```
+je reconnais mon erreur mais j'ajoute que le hash etant identique il y'a une preuve qu'aucune donnée n'a été modifié pour l'analyse et donc que la preuve est recevable
 
 ### 8.3
 Décris un scénario où l'acquisition de la RAM serait plus importante que l'acquisition du disque dur.
 
 **Ta réponse :**
-```
-```
+si la preuve pour lequel l'enquete a lieu est présente au moment ou l'ecran est encore allumé
 
 ---
 
