@@ -417,7 +417,25 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 - D) Identification → Acquisition → Préservation → Analyse → Reporting
 
 **Ta réponse :** C
-**Justification :** on analyse ce qu'on a, on verifie que rien ne s'echappe, on recupere les données, on analyse et on en fait un rapport afin que les preuvent soient recevable 
+**Justification :** on analyse ce qu'on a, on verifie que rien ne s'echappe, on recupere les données, on analyse et on en fait un rapport afin que les preuvent soient recevable
+
+**❌ CORRECTION :**
+- **Réponse correcte : B) Identification → Préservation → Acquisition → Analyse → Reporting**
+- **Ta réponse C est INCORRECTE**
+
+**Explication de l'ordre correct :**
+1. **IDENTIFICATION** : D'abord déterminer QUOI chercher et OÙ (scope, sources, volatilité)
+2. **PRÉSERVATION** : Protéger les preuves identifiées (write-blocker, isolation, photos)
+3. **ACQUISITION** : Créer la copie forensic bit-for-bit
+4. **ANALYSE** : Examiner les données acquises
+5. **REPORTING** : Documenter les résultats
+
+**Pourquoi ta réponse est fausse :**
+- Tu as confondu Préservation et Identification
+- On ne peut pas "préserver" avant d'avoir "identifié" ce qui doit être préservé
+- La préservation vient APRÈS avoir identifié les sources de preuves
+
+**Mnémotechnique : "I-P-A-A-R" = Inspecteur Poirot Accuse Avec Raison** 
 
 ---
 
@@ -430,6 +448,30 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 **Ta réponse :** B
 **Justification :** on doit prendre une photo pour explique dans quelle etat on a trouvé la machine puis on capture la ram car une fois eteint elle s'efface
 
+**✅ CORRECTION :**
+- **Réponse : B) CORRECTE**
+- **Justification excellente**
+
+**Détails :**
+1. **Photo de l'écran** : Document visuel de l'état initial (données volatiles visibles)
+2. **Capture RAM** : Priorité MAXIMALE car contient :
+   - Document Word ouvert (peut-être non sauvegardé)
+   - Clés de chiffrement potentielles
+   - Processus en cours
+   - Connexions réseau actives
+   - Mots de passe en clair
+
+**Pourquoi pas les autres réponses :**
+- A) Éteindre = PERTE de toutes les données volatiles (RAM) ❌
+- C) Débrancher réseau d'abord = on perd du temps, RAM prioritaire
+- D) Appeler superviseur = perte de temps, RAM se dégrade
+
+**Ordre complet pour PC allumé :**
+1. Photo écran ✅
+2. Capture RAM ✅
+3. Isoler réseau (si connexions suspectes)
+4. Acquisition disque (avec write-blocker)
+
 ---
 
 ### Q3. Quel format d'image forensic offre compression, métadonnées intégrées et vérification d'intégrité ?
@@ -440,6 +482,23 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 
 **Ta réponse :** B
 **Justification :** c'est le model reconnue pour les juristes
+
+**✅ CORRECTION :**
+- **Réponse : B) CORRECTE**
+- **Justification à améliorer**
+
+**Pourquoi E01 est le format préféré :**
+1. **Compression** : Réduit la taille de 30-50% (LZ/bz2)
+2. **Métadonnées intégrées** : Examinateur, date, numéro de cas, notes
+3. **Hash CRC par segment** : Vérification d'intégrité automatique
+4. **Segmentation** : Fichiers de taille configurable (ex: 2GB max)
+5. **Reconnaissance universelle** : Accepté par tous les tribunaux mondialement
+
+**Comparaison :**
+- **Raw/dd** : Copie brute, aucune métadonnée, pas de compression
+- **E01** : Professionnel, métadonnées + compression + intégrité ✅
+- **ISO** : Pour CD/DVD, pas forensic
+- **VHD** : Virtualisation, pas format forensic standard
 
 ---
 
@@ -452,6 +511,33 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 **Ta réponse :** C
 **Justification :** le hash doit absolument etre le meme, si ce n'est pas le cas il faut recommencer et voir ou est l'erreur. Tout ça en documentant
 
+**✅ CORRECTION :**
+- **Réponse : C) CORRECTE - PARFAIT**
+- **Justification excellente**
+
+**Procédure détaillée en cas de hash différent :**
+
+1. **STOP immédiatement** - Ne pas utiliser l'image ❌
+2. **Documenter l'échec** dans ton rapport :
+   ```
+   "Acquisition échouée - Hash mismatch détecté
+   Hash source  : [SHA-256 original]
+   Hash image   : [SHA-256 différent]
+   Date/heure   : [timestamp]
+   ```
+3. **Investiguer la cause** :
+   - Write-blocker défaillant ?
+   - Câble/connecteur défectueux ?
+   - Disque source en panne ?
+   - Erreur de lecture/écriture ?
+4. **Recommencer l'acquisition** avec :
+   - Nouveau write-blocker si suspect
+   - Nouveau câble
+   - Vérification SMART du disque
+5. **Re-calculer et re-vérifier** les hash
+
+**CRITIQUE : Un hash différent = image INVALIDE = preuve IRRECEVABLE en justice**
+
 ---
 
 ### Q5. Quel élément est le PLUS volatile ?
@@ -462,6 +548,33 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 
 **Ta réponse :** B
 **Justification :** une fois l'ordinateur eteint tout s'en va
+
+**✅ CORRECTION :**
+- **Réponse : B) CORRECTE**
+- **Justification correcte mais à approfondir**
+
+**Pourquoi la RAM est la PLUS volatile :**
+- **Durée de vie après extinction** : Quelques secondes à quelques minutes max
+- **Contenu critique** :
+  - Clés de chiffrement (TrueCrypt, BitLocker, VeraCrypt)
+  - Mots de passe en clair
+  - Documents non sauvegardés
+  - Processus malveillants
+  - Connexions réseau actives
+  - Historique de commandes
+
+**Comparaison de volatilité :**
+- **RAM** : Perdue instantanément à l'extinction ⚠️ (le plus volatile)
+- **SSD/USB** : Données persistent des années (moins volatile)
+- **Logs cloud** : Persistent indéfiniment (le moins volatile)
+
+**Ordre RFC 3227 (à connaître pour CFCE) :**
+1. Registres CPU, cache
+2. **RAM** ← La plus critique
+3. État réseau
+4. Processus
+5. Fichiers temp
+6. Disque dur
 
 ---
 
@@ -474,6 +587,31 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 **Ta réponse :** B
 **Justification :** pour eviter tout ecriture sur le disk qui ferait que la preuve est irrecevable
 
+**✅ CORRECTION :**
+- **Réponse : B) CORRECTE - PARFAIT**
+- **Justification excellente**
+
+**Le write-blocker matériel est OBLIGATOIRE car :**
+
+1. **Protection physique** : Bloque électriquement toute écriture au niveau matériel
+2. **Confiance judiciaire** : Reconnu par tous les tribunaux
+3. **Impossibilité de contournement** : Contrairement au logiciel, pas de bug/faille possible
+4. **Certification** : Dispositifs testés et certifiés (NIST, SWGDE)
+
+**Conséquences sans write-blocker :**
+- ❌ Système d'exploitation écrit automatiquement (timestamps, logs, registry)
+- ❌ Preuve **contestable** par avocat adverse
+- ❌ Hash changé = intégrité compromise
+- ❌ Preuve potentiellement **REJETÉE** en justice
+
+**Marques reconnues :**
+- Tableau (Guidance Software)
+- CRU WiebeTech
+- Logicube
+- Voom HardCopy
+
+**Règle CFCE : TOUJOURS write-blocker MATÉRIEL pour acquisition judiciaire**
+
 ---
 
 ### Q7. La Chain of Custody documente :
@@ -484,6 +622,31 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 
 **Ta réponse :** B
 **Justification :** afin de pouvoir avoir les noms des personnes ayant travaillé dessus au cas ou il y'a un problème
+
+**✅ CORRECTION :**
+- **Réponse : B) CORRECTE**
+- **Justification correcte mais incomplète**
+
+**La Chain of Custody documente :**
+
+**Informations obligatoires pour CHAQUE manipulation :**
+1. **Qui** : Nom complet, badge, fonction, signature
+2. **Quand** : Date et heure précises (UTC recommandé)
+3. **Quoi** : Action effectuée (saisie, transfert, analyse, stockage)
+4. **Où** : Lieu précis de la manipulation
+5. **Pourquoi** : Raison de la manipulation
+6. **État** : Condition de la preuve (scellés intacts ?)
+
+**Objectif de la CoC :**
+- Prouver que la preuve présentée au tribunal est **identique** à celle saisie
+- Traçabilité **sans interruption** de la saisie au témoignage
+- Prouver qu'aucune altération n'a eu lieu
+- Identifier responsabilités en cas de problème
+
+**Conséquence d'une CoC incomplète :**
+- ❌ "Cassure" dans la chaîne = preuve **contestable**
+- ❌ Avocat dira : "Impossible de prouver que la preuve n'a pas été altérée"
+- ❌ Peut entraîner le **REJET** de la preuve
 
 ---
 
@@ -496,6 +659,38 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 **Ta réponse :** C
 **Justification :** Car un fichier contenant le nom a pu etre effacé
 
+**✅ CORRECTION :**
+- **Réponse : C) CORRECTE - PARFAIT**
+- **Justification excellente**
+
+**Pourquoi chercher dans les DEUX espaces :**
+
+**1. Espace alloué (fichiers existants) :**
+- Fichiers visibles par l'utilisateur
+- Accessibles par l'explorateur de fichiers
+- Contenu actif et non supprimé
+
+**2. Espace non-alloué (fichiers supprimés) :**
+- Fichiers supprimés (Corbeille vidée)
+- Secteurs libres mais contenant encore des données
+- **CRITIQUE** : Souvent contient les preuves les plus importantes
+- Le suspect a peut-être supprimé des fichiers incriminants
+
+**Exemple concret :**
+```
+Recherche du mot "fraude" :
+- Espace alloué : 12 occurrences trouvées
+- Espace non-alloué : 847 occurrences trouvées (fichiers supprimés)
+                        ↑ Preuves que le suspect a tenté de cacher
+```
+
+**Outils de recherche forensic :**
+- Autopsy : Indexe automatiquement les deux espaces
+- EnCase : Keyword search en espace alloué + non-alloué
+- X-Ways : Recherche avancée avec regex
+
+**Règle CFCE : TOUJOURS chercher dans l'espace alloué ET non-alloué**
+
 ---
 
 ### Q9. Le rapport forensic doit être :
@@ -507,6 +702,45 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 **Ta réponse :** C
 **Justification :** Afin que les juges puissent prendre une decision sur ce qui à été trouvé
 
+**✅ CORRECTION :**
+- **Réponse : C) CORRECTE - PARFAIT**
+- **Justification excellente**
+
+**Le rapport forensic doit être :**
+
+**1. Objectif**
+- Faits seulement, pas d'opinions personnelles
+- Pas de biais pour l'accusation ou la défense
+- Expert **impartial**
+
+**2. Reproductible**
+- Un autre examinateur doit pouvoir vérifier tes résultats
+- Méthodologie complète documentée
+- Outils et versions spécifiés
+
+**3. Compréhensible par un non-technicien**
+- **Executive Summary** en langage simple (1 page max)
+- Éviter jargon technique excessif
+- Expliquer les termes techniques nécessaires
+- Destiné à : Juge, jury, avocats, directeurs
+
+**Structure type :**
+```
+├── Executive Summary (non-technique)
+├── Méthodologie (technique)
+├── Résultats (faits objectifs)
+├── Conclusions (basées sur preuves)
+└── Annexes (screenshots, hashs, logs)
+```
+
+**Audience du rapport :**
+- Juge (décisions juridiques)
+- Jury (peut-être sans formation technique)
+- Avocats (contre-interrogatoire)
+- Autre expert forensic (peer review)
+
+**Règle d'or : Si ta grand-mère ne comprend pas l'Executive Summary, réécris-le**
+
 ---
 
 ### Q10. Le file carving permet de :
@@ -517,6 +751,43 @@ Pour chaque question, choisis la meilleure réponse ET justifie ton choix.
 
 **Ta réponse :** B
 **Justification :** _______________________________________________
+
+**✅ CORRECTION :**
+- **Réponse : B) CORRECTE**
+- **Justification manquante - À compléter**
+
+**Le file carving permet de :**
+
+**Récupérer des fichiers supprimés en utilisant leurs signatures (headers/footers)**
+
+**Comment ça fonctionne :**
+1. Scanner l'espace non-alloué byte par byte
+2. Chercher les **signatures de fichiers** (magic numbers)
+3. Reconstruire le fichier jusqu'au footer
+4. Exporter le fichier récupéré
+
+**Exemples de signatures :**
+```
+JPEG : FF D8 FF E0 (header)
+PNG  : 89 50 4E 47 0D 0A 1A 0A
+PDF  : 25 50 44 46 (%PDF)
+ZIP  : 50 4B 03 04
+DOCX : 50 4B 03 04 (c'est un ZIP)
+```
+
+**Cas d'usage :**
+- Fichiers supprimés (corbeille vidée)
+- Entrées MFT écrasées
+- Partitions formatées
+- Disques endommagés
+
+**Outils :**
+- **Scalpel** : Rapide, basé sur signatures
+- **PhotoRec** : Spécialisé photos mais fait tout
+- **Foremost** : Standard Linux
+- Autopsy (intégré)
+
+**Limite : Le carving récupère le contenu mais PAS les métadonnées (nom, date, chemin)**
 
 ---
 
@@ -535,14 +806,39 @@ Classe ces éléments du PLUS volatile au MOINS volatile (1 = plus volatile) :
 
 **Ton classement :**
 ```
-1. (plus volatile) : _______________
-2. _______________
-3. _______________
-4. _______________
-5. _______________
-6. _______________
-7. (moins volatile) : _______________
+1. (plus volatile) : RAM
+2. Registres CPU
+3. Fichiers temporaires système
+4. Table de routage réseau
+5. Serveur de logs distant
+6. Clé USB connectée
+7. (moins volatile) : Disque dur interne
 ```
+
+**✅ CORRECTION :**
+
+**Ordre correct selon RFC 3227 :**
+```
+1. (plus volatile) : Registres CPU ⚠️
+2. RAM
+3. Table de routage réseau / État réseau
+4. Fichiers temporaires système
+5. Clé USB connectée
+6. Serveur de logs distant
+7. (moins volatile) : Disque dur interne
+```
+
+**Ton erreur :** Tu as inversé RAM et Registres CPU
+
+**Explication :**
+- **Registres CPU** = Le PLUS volatile (microsecondes, change à chaque instruction)
+- **RAM** = Très volatile (perdue à l'extinction, secondes/minutes)
+- **État réseau** = Disparaît dès déconnexion
+- **Fichiers temp** = Supprimés au redémarrage
+- **USB/Disque** = Persistent des années
+- **Logs distants** = Persistent indéfiniment
+
+**Score : 6/7** - Très bon, juste une erreur mineure sur l'ordre CPU vs RAM
 
 ### 2.2 Procédure d'acquisition
 Remets ces étapes dans l'ordre correct :
@@ -563,6 +859,42 @@ Remets ces étapes dans l'ordre correct :
 5. Vérifier que le hash source = hash image
 6. Documenter dans la Chain of Custody
 ```
+
+**❌ CORRECTION :**
+
+**Ordre CORRECT :**
+```
+1. Photographier le média et noter le S/N ✅
+2. Connecter le write-blocker ✅
+3. Calculer le hash du média source ⚠️ (AVANT l'image!)
+4. Créer l'image forensic (E01) ⚠️
+5. Calculer le hash de l'image créée (automatique avec E01)
+6. Vérifier que hash source = hash image ✅
+7. Documenter dans la Chain of Custody ✅
+```
+
+**Ton erreur principale : Tu as calculé le hash APRÈS avoir créé l'image**
+
+**Procédure correcte détaillée :**
+
+1. **Photos + Documentation** : État initial, S/N, dommages visibles
+2. **Write-blocker** : Connecter AVANT toute opération
+3. **Hash SOURCE** : Calculer MD5 + SHA-256 du disque original
+   ```
+   md5sum /dev/sda
+   sha256sum /dev/sda
+   ```
+4. **Acquisition** : Créer l'image E01 (qui calcule aussi son propre hash)
+5. **Hash IMAGE** : Extraire le hash de l'image E01 créée
+6. **Vérification** : Comparer hash source vs hash image
+7. **Documentation CoC** : Noter tous les hash, dates, personnes
+
+**Pourquoi le hash SOURCE d'abord :**
+- Tu as besoin d'une référence AVANT de toucher au disque
+- Si l'acquisition échoue, tu as quand même le hash original
+- C'est la preuve de l'état initial du disque
+
+**Score : 4/6** - Erreur d'ordre critique sur les hash
 
 ---
 
@@ -586,6 +918,92 @@ Rédige une entrée complète de Chain of Custody pour cette saisie. Inclus tous
 ```
 je branche le blockwriter sur la machine, je fais une copie bit a bit du disk, je calcul le hash via l'image E01, je verifie que le hash soit correct et je procède a l'analyse
 ```
+
+**❌ CORRECTION :**
+
+**Ce n'est PAS une Chain of Custody - c'est une procédure d'acquisition !**
+
+**Chain of Custody = Document légal de traçabilité, pas procédure technique**
+
+**Chain of Custody CORRECTE pour ce scénario :**
+
+```
+═══════════════════════════════════════════════════════════
+                   CHAIN OF CUSTODY FORM
+═══════════════════════════════════════════════════════════
+Case Number: [Numéro attribué par l'enquête]
+Case Name: Vol de données - TechCorp
+Agency: [Ton agence/police]
+
+─────────────────────────────────────────────────────────
+EVIDENCE ITEM DESCRIPTION
+─────────────────────────────────────────────────────────
+Item #: EVIDENCE-001
+Description: Ordinateur portable Dell Latitude 5520
+Serial Number: DXRT789456
+Color/Condition: Noir, bon état, ét eint
+Location Found: Bureau 302, TechCorp, 45 rue de la Paix, Paris
+
+Storage Device:
+  Type: SSD Samsung 512GB
+  Serial Number: S4EVNX0R789123
+  Capacity: 512 GB
+  Condition: Installé dans le laptop
+
+─────────────────────────────────────────────────────────
+SEIZURE INFORMATION
+─────────────────────────────────────────────────────────
+Date/Time: 15 mars 2024, 14:30 UTC
+Location: Bureau 302, TechCorp, 45 rue de la Paix, 75001 Paris
+Seized By: Jean Dupont, Badge #1234
+Witness: [Nom témoin si présent]
+
+Initial State:
+  ☑ Power OFF
+  ☐ Power ON
+  ☐ Sleep/Hibernate
+  ☐ Locked
+  ☑ No visible damage
+
+Photographed: ☑ Yes  ☐ No
+Photo IDs: IMG_001 à IMG_005
+
+─────────────────────────────────────────────────────────
+HASH VALUES (Calculated at seizure/acquisition)
+─────────────────────────────────────────────────────────
+MD5:    [sera calculé pendant acquisition]
+SHA-256: [sera calculé pendant acquisition]
+
+─────────────────────────────────────────────────────────
+CUSTODY LOG
+─────────────────────────────────────────────────────────
+Date/Time      | Released By      | Received By      | Purpose
+---------------|------------------|------------------|----------
+15/03/24 14:30 | Jean Dupont #1234| Jean Dupont #1234| Saisie initiale
+15/03/24 15:00 | Jean Dupont #1234| [Transport]      | Transport au labo
+15/03/24 16:30 | Jean Dupont #1234| Marie Lab #5678  | Remise au labo
+15/03/24 16:35 | Marie Lab #5678  | Coffre sécurisé #3| Stockage
+
+Signatures:
+- Saisie: ___Jean Dupont___ Date: 15/03/2024
+- Réception labo: ___Marie Lab___ Date: 15/03/2024
+
+═══════════════════════════════════════════════════════════
+```
+
+**Éléments que tu as oublié (CRITIQUES) :**
+- ❌ Aucune information d'identification (numéro de cas, agence)
+- ❌ Pas de description du laptop et du SSD
+- ❌ Pas de date/heure de saisie
+- ❌ Pas de lieu précis
+- ❌ Pas de badge/signature
+- ❌ Pas de log des transferts
+- ❌ Pas d'état initial documenté
+- ❌ Pas de photos mentionnées
+
+**Ce que tu as décrit était la PROCÉDURE d'acquisition, pas la CoC**
+
+**Score : 0/10** - Confusion totale entre CoC et procédure technique
 
 ---
 
@@ -765,6 +1183,259 @@ Avant de soumettre tes réponses, vérifie :
 
 # FIN DU MODULE 1
 
-**Prochaine étape :** Envoie-moi tes réponses pour correction détaillée.
+---
 
-**Module suivant :** Module 2 — Procédure Judiciaire (Chain of Custody approfondie, témoignage, preuves numériques)
+# 📊 ÉVALUATION GLOBALE MODULE 1
+
+## Résumé des scores par exercice
+
+| Exercice | Score | Commentaire |
+|----------|-------|-------------|
+| **Exercice 1 - QCM** | 9/10 (90%) | Excellentes réponses. 1 erreur sur Q1 (ordre des phases) |
+| **Exercice 2.1 - Volatilité** | 6/7 (86%) | Très bon. Inversion mineure CPU/RAM |
+| **Exercice 2.2 - Procédure** | 4/6 (67%) | Erreur critique : hash AVANT acquisition, pas après |
+| **Exercice 3 - Chain of Custody** | 0/10 (0%) | ⚠️ CRITIQUE - Confusion totale CoC vs procédure technique |
+| **Exercice 4 - Scène investigation** | 7/10 (70%) | Bonnes priorités. Quelques détails manquants |
+| **Exercice 5 - Hash analysis** | 10/10 (100%) | PARFAIT - Compréhension excellente |
+| **Exercice 6 - Executive Summary** | 9/10 (90%) | Excellent - Clair, concis, professionnel |
+| **Exercice 7 - Vrai/Faux** | 7/8 (87.5%) | Très bon. 1 erreur sur write-blocker logiciel |
+| **Exercice 8 - Questions ouvertes** | 6/10 (60%) | Réponses trop courtes, manque de développement |
+
+---
+
+## 🎯 SCORE GLOBAL : **69/100 (D+)**
+
+**⚠️ ATTENTION : Score sous le seuil CFCE (70% requis)**
+
+---
+
+## Points forts
+
+### ✅ Compréhension technique solide
+- Excellente maîtrise des hash et de leur vérification ✅
+- Ordre de volatilité bien compris ✅
+- Priorité RAM sur PC allumé : correct ✅
+- Executive Summary : professionnel et clair ✅
+- Write-blocker matériel : importance comprise ✅
+
+### ✅ Bonnes intuitions forensic
+- Tu comprends l'importance de la documentation
+- Tu sais que les hash doivent correspondre
+- Tu identifies correctement les priorités (RAM first)
+
+---
+
+## Points critiques à corriger IMMÉDIATEMENT
+
+### ❌ 1. Chain of Custody (CRITIQUE - 0/10)
+
+**Ton erreur :** Tu as confondu Chain of Custody (document légal) avec procédure d'acquisition (technique)
+
+**Ce que tu as écrit :**
+> "je branche le blockwriter sur la machine, je fais une copie bit a bit du disk..."
+
+**Ce qu'il fallait :**
+- Document formel avec numéro de cas
+- Description complète de l'item
+- Date/heure/lieu de saisie
+- Nom, badge, signature
+- Log de CHAQUE transfert
+- État initial documenté
+
+**Impact :** C'est une erreur FATALE pour un CFCE. La CoC est un document LÉGAL, pas une procédure technique.
+
+**À faire IMMÉDIATEMENT :**
+- Relire intégralement la section Chain of Custody du Module 2
+- Rédiger 3 Chain of Custody complètes pour pratiquer
+- Mémoriser la structure type
+
+---
+
+### ❌ 2. Ordre Hash vs Acquisition (Erreur critique)
+
+**Ton erreur :** Tu calcules le hash APRÈS avoir créé l'image
+
+**Ordre CORRECT :**
+```
+1. Photos
+2. Write-blocker
+3. Hash SOURCE (AVANT acquisition) ⚠️
+4. Créer image E01
+5. Hash IMAGE (extrait de E01)
+6. Vérifier hash source = hash image
+7. Documenter CoC
+```
+
+**Pourquoi c'est critique :**
+- Le hash source est ta RÉFÉRENCE
+- Sans hash source préalable, tu n'as rien pour comparer
+- C'est la preuve de l'état INITIAL du disque
+
+---
+
+### ❌ 3. Ordre des 5 phases forensic
+
+**Ton erreur (Q1) :** Tu as répondu "Préservation → Identification..."
+
+**Ordre CORRECT :**
+```
+I - IDENTIFICATION  (Quoi? Où? Scope)
+P - PRÉSERVATION   (Write-blocker, photos, CoC)
+A - ACQUISITION    (Copie bit-for-bit)
+A - ANALYSE        (Examiner les données)
+R - REPORTING      (Documenter)
+```
+
+**Mnémotechnique : I-P-A-A-R = "Inspecteur Poirot Accuse Avec Raison"**
+
+On ne peut pas PRÉSERVER avant d'avoir IDENTIFIÉ ce qu'il faut préserver !
+
+---
+
+### ⚠️ 4. Réponses trop courtes (Exercice 8)
+
+**Exemple de ta réponse :**
+> "car si la preuve n'est pas recevable, elle ne pourra pas être utilisé comme piece a conviction"
+
+**Ce qui était attendu :** 5-10 phrases développées expliquant :
+- Pourquoi la préservation est critique
+- Conséquences d'une mauvaise préservation
+- Exemples concrets
+- Principes ACPO
+- Standards (NIST, SWGDE)
+
+---
+
+## 📋 Plan d'action URGENT
+
+### 1. PRIORITÉ MAXIMALE - Chain of Custody (Semaine 1)
+- [ ] Relire Module 2 sections Chain of Custody (pages 61-132)
+- [ ] Créer un template CoC vierge
+- [ ] Rédiger 5 Chain of Custody complètes (scénarios variés)
+- [ ] Distinguer clairement :
+  - **CoC** = Document légal de traçabilité
+  - **Procédure** = Actions techniques (acquisition, hash, etc.)
+
+### 2. CRITIQUE - Procédure d'acquisition (Semaine 1-2)
+- [ ] Mémoriser l'ordre EXACT :
+  1. Photos
+  2. Write-blocker
+  3. **Hash SOURCE**
+  4. Acquisition
+  5. Hash IMAGE
+  6. Vérification
+  7. CoC
+- [ ] Pratiquer avec FTK Imager ou dd
+- [ ] Calculer des hash MD5+SHA-256 manuellement
+
+### 3. Les 5 phases forensic (Semaine 1)
+- [ ] Mémoriser I-P-A-A-R
+- [ ] Expliquer chaque phase à voix haute
+- [ ] Créer des flashcards
+
+### 4. Développer les réponses (Semaine 2)
+- [ ] Refaire Exercice 8 avec réponses complètes (5-10 phrases)
+- [ ] Inclure exemples concrets
+- [ ] Citer standards (NIST, SWGDE, ACPO)
+
+---
+
+## 🎓 Niveau CFCE actuel : **INSUFFISANT (69%)**
+
+### Comparaison avec standards CFCE :
+
+| Compétence CFCE | Ton niveau | Commentaire |
+|-----------------|------------|-------------|
+| **Compréhension technique** | ⭐⭐⭐⭐ 80% | Bon - Hash, volatilité, write-blocker OK |
+| **Procédures d'acquisition** | ⭐⭐⭐ 65% | Moyen - Erreur d'ordre hash/acquisition |
+| **Chain of Custody** | ⭐ 10% | **CRITIQUE** - Confusion totale CoC vs procédure |
+| **Les 5 phases** | ⭐⭐⭐ 60% | Moyen - Erreur d'ordre I-P-A-A-R |
+| **Documentation/Reporting** | ⭐⭐⭐⭐ 85% | Bon - Executive Summary excellent |
+
+---
+
+## ⚠️ Diagnostic CFCE
+
+**Statut actuel : NON PRÊT**
+
+**Raisons principales :**
+1. **Chain of Custody = 0/10** ⛔ - Erreur éliminatoire
+2. Ordre procédure acquisition incorrecte
+3. Confusion sur les 5 phases forensic
+
+**Temps estimé pour remédiation : 2-3 semaines intensives**
+
+---
+
+## 💡 Recommandations finales
+
+### Ce que tu MAÎTRISES déjà :
+✅ Importance des hash
+✅ Write-blocker matériel obligatoire
+✅ Priorité RAM sur système live
+✅ Rédaction Executive Summary
+✅ Recherche espace alloué + non-alloué
+
+### Ce que tu DOIS corriger (CRITIQUE) :
+❌ **Chain of Custody** - URGENT ⚠️
+❌ Ordre hash/acquisition
+❌ Les 5 phases (I-P-A-A-R)
+❌ Développer les réponses (pas de réponses courtes)
+
+### Tu n'es PAS prêt pour Module 2 tant que :
+- [ ] Chain of Custody pas maîtrisée (score minimum 80%)
+- [ ] Procédure acquisition pas corrigée
+- [ ] Les 5 phases pas mémorisées
+
+---
+
+## 🚀 Action immédiate (Cette semaine)
+
+**Jour 1-2 : Chain of Custody**
+- Relire Module 2 CoC (2h)
+- Créer template CoC (1h)
+- Rédiger 3 CoC complètes (3h)
+
+**Jour 3-4 : Procédure d'acquisition**
+- Mémoriser ordre EXACT (1h)
+- Pratiquer avec FTK Imager (2h)
+- Refaire Exercice 2.2 (30min)
+
+**Jour 5 : Les 5 phases**
+- Flashcards I-P-A-A-R (1h)
+- Expliquer à voix haute (30min)
+- Refaire Q1 (10min)
+
+**Jour 6-7 : Mock exam complet Module 1**
+- Refaire TOUS les exercices
+- Timer 2h maximum
+- Score cible : 85%+
+
+---
+
+## 📊 Verdict final
+
+**Score actuel : 69/100 (D+)**
+
+**Tu as de bonnes bases techniques, MAIS** :
+- ❌ Erreur critique sur Chain of Custody (score 0/10)
+- ❌ Confusions sur procédures fondamentales
+- ❌ Réponses trop courtes et superficielles
+
+**Avec 2-3 semaines de travail ciblé, tu peux atteindre 85%+**
+
+**Ne passe PAS au Module 2 avant d'avoir :**
+1. Maîtrisé la Chain of Custody (80%+)
+2. Corrigé l'ordre hash/acquisition
+3. Mémorisé I-P-A-A-R
+
+**La certification CFCE est à ta portée, mais tu dois corriger ces lacunes critiques d'abord. Courage ! 🎯**
+
+---
+
+**Prochaine étape recommandée :**
+1. Reprendre Module 1 entièrement
+2. Refaire TOUS les exercices
+3. Score cible 85%+ avant Module 2
+
+**Module suivant (après correction) :** Module 2 — Procédure Judiciaire (Chain of Custody approfondie, témoignage, preuves numériques)
