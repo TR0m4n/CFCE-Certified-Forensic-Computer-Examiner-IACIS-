@@ -650,7 +650,7 @@ SI DIFFÉRENT : Image INVALIDE → Recommencer
 - C) Targeted
 - D) Toutes les acquisitions
 
-**Ta réponse :** _______
+**Ta réponse :** B
 **Justification :** _______________________________________________
 
 ---
@@ -661,7 +661,7 @@ SI DIFFÉRENT : Image INVALIDE → Recommencer
 - C) Plus petit que le disque source sans compression
 - D) Peut être lu par tous les outils
 
-**Ta réponse :** _______
+**Ta réponse :** B
 **Justification :** _______________________________________________
 
 ---
@@ -672,7 +672,7 @@ SI DIFFÉRENT : Image INVALIDE → Recommencer
 - C) La RAM
 - D) Les logs système
 
-**Ta réponse :** _______
+**Ta réponse :** C
 **Justification :** _______________________________________________
 
 ---
@@ -683,7 +683,7 @@ SI DIFFÉRENT : Image INVALIDE → Recommencer
 - C) Oui, si SHA-1 correspond
 - D) Dépend du tribunal
 
-**Ta réponse :** _______
+**Ta réponse :** B
 **Justification :** _______________________________________________
 
 ---
@@ -694,7 +694,7 @@ SI DIFFÉRENT : Image INVALIDE → Recommencer
 - C) Les deux sont équivalents
 - D) Aucun si on utilise Linux
 
-**Ta réponse :** _______
+**Ta réponse :** B
 **Justification :** _______________________________________________
 
 ---
@@ -705,7 +705,7 @@ SI DIFFÉRENT : Image INVALIDE → Recommencer
 - C) Vérifie seulement le hash sans copier
 - D) Monte le disque en lecture seule
 
-**Ta réponse :** _______
+**Ta réponse :** A
 **Justification :** _______________________________________________
 
 ---
@@ -716,7 +716,7 @@ SI DIFFÉRENT : Image INVALIDE → Recommencer
 - C) La RAM n'est jamais chiffrée
 - D) Pour contourner le mot de passe Windows
 
-**Ta réponse :** _______
+**Ta réponse :** B
 **Justification :** _______________________________________________
 
 ---
@@ -727,7 +727,7 @@ SI DIFFÉRENT : Image INVALIDE → Recommencer
 - C) Le même niveau de récupération qu'un HDD
 - D) Aucun impact sur la récupération
 
-**Ta réponse :** _______
+**Ta réponse :** A
 **Justification :** _______________________________________________
 
 ---
@@ -738,7 +738,7 @@ SI DIFFÉRENT : Image INVALIDE → Recommencer
 - C) On ne capture que 2GB du disque
 - D) La compression cible 2GB
 
-**Ta réponse :** _______
+**Ta réponse :** A
 **Justification :** _______________________________________________
 
 ---
@@ -749,7 +749,7 @@ SI DIFFÉRENT : Image INVALIDE → Recommencer
 - C) Seulement sur les systèmes Linux
 - D) Seulement avec un module payant
 
-**Ta réponse :** _______
+**Ta réponse :** A
 **Justification :** _______________________________________________
 
 ---
@@ -773,12 +773,12 @@ Tu dois acquérir les données d'un laptop HP EliteBook :
 **2.1** Décris étape par étape ta procédure d'acquisition (minimum 10 étapes).
 
 ```
-Étape 1:
-Étape 2:
-Étape 3:
-Étape 4:
-Étape 5:
-Étape 6:
+Étape 1:je branche le write blocker
+Étape 2:je capture la RAM
+Étape 3:j'active FTK imager et lance la copie bit a bit
+Étape 4:j'utilise DimpIT
+Étape 5:je calcul le hash pour la copie du disque
+Étape 6:je créer un rapport pour expliquer toute les mesures faite pour la procedure
 Étape 7:
 Étape 8:
 Étape 9:
@@ -791,16 +791,14 @@ Tu dois acquérir les données d'un laptop HP EliteBook :
 **2.2** Pourquoi ne pas simplement éteindre le laptop et faire une image du SSD directement ?
 
 **Ta réponse :**
-```
-```
+car la ram va partir avec toutes les informations qu'elle possède
 
 ---
 
 **2.3** Si tu rates la capture RAM et éteins le laptop, que perds-tu potentiellement ?
 
 **Ta réponse :**
-```
-```
+je peux perdre des clés de chiffrements
 
 ---
 
@@ -850,8 +848,7 @@ Image Verification Results:
 **3.1** Quelle est la taille approximative du disque source en GB ?
 
 **Ta réponse et calcul :**
-```
-```
+le disque va faire 7Mo la memoire possède 3,907,029,168 et 512 bytes par secteurs
 
 ---
 
@@ -859,8 +856,8 @@ Image Verification Results:
 
 **Tes observations :**
 ```
-1.
-2.
+1.l'image n'est pas compressé
+2.l'état dans laquel a été trouvé la machine
 3.
 (Ajoutes-en si tu en vois d'autres)
 ```
@@ -870,8 +867,7 @@ Image Verification Results:
 **3.3** L'acquisition a pris combien de temps ?
 
 **Ta réponse :**
-```
-```
+l'acquisition a pris un peu plus de 3h30
 
 ---
 
@@ -881,10 +877,10 @@ Complète le tableau suivant :
 
 | Critère | Raw (dd) | E01 | Ton choix pour une affaire judiciaire et pourquoi |
 |---------|----------|-----|--------------------------------------------------|
-| Compression | | | |
-| Métadonnées | | | |
-| Hash intégré | | | |
-| Taille finale | | | |
+| Compression | non|oui |EO1 car en plus d'etre moins lourde pour les enquette et prends donc moins temps a l'analyser
+| Métadonnées | non|oui |possède des informations supplémentaire par rapport a l'image dd |
+| Hash intégré | non|oui |E01 car possède un hash automatique |
+| Taille finale |plus lourde |moins lourde |E01 |
 | Compatibilité outils | | | |
 | Segmentation | | | |
 
@@ -912,10 +908,36 @@ Tu viens de terminer une acquisition avec les informations suivantes :
 - Aucune erreur
 
 **Ta tâche :** Rédige un log d'acquisition professionnel complet.
+Acquisition Log – Cas #2024-0512  
+Examinateur : Alex Morel  
+Preuve : #E-007  
 
-```
-(Rédige ici)
-```
+Source du support :  
+- Disque externe Western Digital My Passport 4TB  
+- Numéro de série : WX91234567  
+- Interface : USB 3.0 via write-blocker Tableau T356789  
+- État du support : Fonctionnel, aucune anomalie observée  
+- Station d’acquisition : Windows 11 Pro  
+- Outil : FTK Imager 4.7.1.2  
+
+Paramètres d’acquisition :  
+- Format d’image : E01  
+- Compression : Activée  
+- Segmentation : 4 GB par segment  
+- Hashs calculés et vérifiés :  
+  - MD5 : a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6  
+  - SHA-256 : 4f9c8b12e7ad55f3c0a8d97ef21c3e4b9fb2a6710e8bdc42e1f87ab903cc19df  
+- Vérification : Hash source = hash image (correspondance confirmée)  
+
+Déroulement :  
+- Début de l’acquisition : 12 mai 2024, 09:00 UTC  
+- Fin de l’acquisition : 12 mai 2024, 14:30 UTC  
+- Durée totale : 5 h 30  
+- Journal FTK Imager : aucune erreur, aucun secteur défectueux signalé  
+
+Conclusion :  
+L’acquisition de la preuve #E-007 a été réalisée avec succès en respectant les procédures forensiques.  
+Les images E01 générées sont complètes, intégrales et validées par comparaison de hash.  
 
 ---
 
@@ -923,14 +945,14 @@ Tu viens de terminer une acquisition avec les informations suivantes :
 
 | # | Affirmation | V/F | Justification |
 |---|-------------|-----|---------------|
-| 1 | Une acquisition logique permet de récupérer des fichiers supprimés | | |
-| 2 | Le format dd est plus complet que E01 car il ne compresse pas | | |
-| 3 | MD5 seul est suffisant pour prouver l'intégrité en 2024 | | |
-| 4 | Un write-blocker logiciel modifie le disque au montage | | |
-| 5 | La RAM peut contenir des clés de chiffrement BitLocker | | |
-| 6 | TRIM sur SSD facilite la récupération de données | | |
-| 7 | dcfldd peut calculer plusieurs hashs simultanément | | |
-| 8 | L'image E01 peut être plus grande que le disque source | | |
+| 1 | Une acquisition logique permet de récupérer des fichiers supprimés | **F** | Une acquisition logique ne récupère que les fichiers visibles, pas l’espace non alloué. |
+| 2 | Le format dd est plus complet que E01 car il ne compresse pas | **F** | dd est brut et sans métadonnées ; E01 ajoute métadonnées, compression, hash. |
+| 3 | MD5 seul est suffisant pour prouver l'intégrité en 2024 | **F** | MD5 est vulnérable aux collisions ; on utilise MD5 + SHA-256. |
+| 4 | Un write-blocker logiciel modifie le disque au montage | **V** | Le montage génère potentiellement des écritures (journaux, métadonnées). |
+| 5 | La RAM peut contenir des clés de chiffrement BitLocker | **V** | Les clés de session BitLocker résident en RAM lorsqu’un volume est déverrouillé. |
+| 6 | TRIM sur SSD facilite la récupération de données | **F** | TRIM efface logiquement les blocs → récupération plus difficile. |
+| 7 | dcfldd peut calculer plusieurs hashs simultanément | **V** | dcfldd supporte le hashing multiple dans un seul flux. |
+| 8 | L'image E01 peut être plus grande que le disque source | **V** | Possible selon la compressibilité et l’overhead du format. |
 
 ---
 
@@ -940,8 +962,10 @@ Tu viens de terminer une acquisition avec les informations suivantes :
 Explique pourquoi l'ordre de volatilité est crucial lors d'une acquisition live, et donne un exemple concret où ignorer cet ordre causerait une perte de preuves importantes.
 
 **Ta réponse :**
-```
-```
+Un write-blocker logiciel doit monter le disque pour fonctionner, ce qui peut générer des écritures involontaires (journaux du système, métadonnées).  
+Ce risque invalide la preuve en contexte judiciaire.  
+Un write-blocker matériel bloque physiquement tout ordre d’écriture avant qu’il n’atteigne le support, garantit l’intégrité, est reconnu par les standards forensics et accepté en tribunal.  
+C’est donc indispensable pour les acquisitions légales.
 
 ---
 
@@ -949,8 +973,10 @@ Explique pourquoi l'ordre de volatilité est crucial lors d'une acquisition live
 Un collègue te dit qu'il utilise toujours un write-blocker logiciel car "c'est plus pratique et ça marche pareil". Rédige une explication pour le convaincre d'utiliser un write-blocker matériel pour les acquisitions judiciaires.
 
 **Ta réponse :**
-```
-```
+Un write-blocker logiciel doit monter le disque pour fonctionner, ce qui peut générer des écritures involontaires (journaux du système, métadonnées).  
+Ce risque invalide la preuve en contexte judiciaire.  
+Un write-blocker matériel bloque physiquement tout ordre d’écriture avant qu’il n’atteigne le support, garantit l’intégrité, est reconnu par les standards forensics et accepté en tribunal.  
+C’est donc indispensable pour les acquisitions légales.
 
 ---
 
@@ -958,8 +984,17 @@ Un collègue te dit qu'il utilise toujours un write-blocker logiciel car "c'est 
 Tu dois acquérir un système avec RAID 5 composé de 4 disques. Décris les approches possibles et leurs avantages/inconvénients.
 
 **Ta réponse :**
-```
-```
+1. Acquisition des disques individuellement :
+   - Avantages : copie brute fidèle ; possible même si le contrôleur RAID est absent.
+   - Inconvénients : nécessite de reconstruire le RAID ensuite ; risque si un disque est défaillant.
+
+2. Acquisition via le contrôleur RAID (volume logique) :
+   - Avantages : plus simple ; système présente un seul volume ; pas de reconstruction manuelle.
+   - Inconvénients : dépend du contrôleur ; si compromis ou mal configuré, image potentiellement incorrecte.
+
+3. Acquisition via un outil spécialisé RAID (ex. mdadm/Linux ou cartes forensic RAID) :
+   - Avantages : reconstruction contrôlée, support des schémas RAID, logs techniques.
+   - Inconvénients : complexité plus élevée ; demande expertise RAID.
 
 ---
 
@@ -969,8 +1004,9 @@ Tu dois acquérir un système avec RAID 5 composé de 4 disques. Décris les app
 Un disque a 1,953,525,168 secteurs de 512 bytes. Quelle est sa capacité en GB (1 GB = 1,000,000,000 bytes) ?
 
 **Ton calcul :**
-```
-```
+1,953,525,168 × 512 = 1,000,204,767,  616 bytes ≈ 1.0002 × 10^12 bytes
+Capacité en GB ≈ 1.0002 × 10^12 / 1×10^9 = ~1000.2 GB
+≈ 1.0 TB (arrondi)
 
 ---
 
@@ -978,8 +1014,8 @@ Un disque a 1,953,525,168 secteurs de 512 bytes. Quelle est sa capacité en GB (
 Une acquisition a produit une image E01 de 450 GB avec compression. Le disque source fait 1 TB. Quel est le taux de compression approximatif ?
 
 **Ton calcul :**
-```
-```
+Taux de compression = 450 / 1000 = 0.45 → 45 %
+Donc ~55 % de réduction.
 
 ---
 
@@ -987,8 +1023,9 @@ Une acquisition a produit une image E01 de 450 GB avec compression. Le disque so
 Tu dois acquérir 3 disques de 2TB chacun avec FTK Imager (format E01, segments de 2GB). Combien de fichiers .E01/.E02/etc. au minimum seras-tu susceptible de créer (sans compression) ?
 
 **Ton calcul :**
-```
-```
+2 TB = 2000 GB
+Nombre de segments par disque = 2000 / 2 = 1000 fichiers
+Pour 3 disques : 1000 × 3 = 3000 fichiers .E01/.E02/…
 
 ---
 
